@@ -1,0 +1,53 @@
+html,
+body {
+    @apply font-roboto overflow-x-hidden;
+    #root {
+        @apply min-h-screen flex flex-col relative bg-[#F3F8F7];
+        & > main {
+            @apply flex-1;
+        }
+    }
+}
+
+.btn-custom {
+    position: relative;
+    overflow: hidden;
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0px;
+        width: 100%;
+        background-color: black;
+        filter: contrast(100px);
+        opacity: 0.1;
+        transition: all 300ms ease;
+    }
+    &:hover {
+        &::after {
+            height: 100%;
+        }
+    }
+}
+
+/* CRIA BARRA PERSONALIZADA */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #465eff white;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: white;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #465eff;
+    border-radius: 20px;
+    border: 2px solid white;
+}
