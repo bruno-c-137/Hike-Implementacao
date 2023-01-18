@@ -1,8 +1,8 @@
 import ImgRetangulo from "../../assets/imgs/img-retangulo.webp";
 import ImgMainImplementacao from "../../assets/imgs/img-main-implementacao.webp";
-import IntegracaoForm from "../integracaoForm/integracaoForm";
-import Criativo from "../criativo/criativo";
-import Agradecimento from "../agradecimento/agradecimento";
+import IntegracaoForm from "./sections/integracaoForm";
+import Criativo from "./sections/criativo";
+import Agradecimento from "./sections/agradecimento";
 
 import MenuNav from "../../components/menuNav";
 export default function Home() {
