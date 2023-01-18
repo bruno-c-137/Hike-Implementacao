@@ -1,6 +1,8 @@
 import ImgRetangulo from "../../assets/imgs/img-retangulo.webp";
 import ImgMainImplementacao from "../../assets/imgs/img-main-implementacao.webp";
 import IntegracaoForm from "../integracaoForm/integracaoForm";
+import Criativo from "../criativo/criativo";
+import Agradecimento from "../agradecimento/agradecimento";
 
 import MenuNav from "../../components/menuNav";
 export default function Home() {
@@ -164,6 +166,16 @@ export default function Home() {
         <div className="mb-10 border-b border-[#5C5D5C] pb-12">
           <div>
             <IntegracaoForm />
+          </div>
+        </div>
+        <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+          <div>
+            <Criativo />
+          </div>
+        </div>
+        <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+          <div>
+            <Agradecimento />
           </div>
         </div>
       </div>
