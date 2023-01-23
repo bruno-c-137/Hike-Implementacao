@@ -1,16 +1,16 @@
-import MenuNav from "../../components/menuNav";
+import MenuNav from "../../../components/menuNav";
 
 import { CheckCircle } from "phosphor-react";
 import { useState } from "react";
 
-import "../../assets/styles/_global.scss";
+import "../../../assets/styles/_global.scss";
 
 export default function IntegracaoForm() {
   const [idForm, setIdForm] = useState<number>(1);
   return (
     <>
       <div className="sm:flex">
-        <div className="sm:w-1/4">
+        <div className="sm:w-1/4 pb-8 sm:pt-0">
           <MenuNav />
         </div>
         <div className="sm:flex-1">
@@ -197,7 +197,9 @@ export default function IntegracaoForm() {
             </div>
 
             <div
-              className={`pt-10 sm:pt-0 ${idForm === 1 ? "" : "cursor-pointer"}`}
+              className={`pt-10 sm:pt-0 ${
+                idForm === 1 ? "" : "cursor-pointer"
+              }`}
               onClick={() => setIdForm(1)}
             >
               <div

@@ -1,20 +1,21 @@
-import MenuNav from "../../components/menuNav";
-import { ArrowUp, CheckCircle, DotsThreeCircleVertical } from "phosphor-react";
+import MenuNav from "../../../components/menuNav";
+import { ArrowUp } from "phosphor-react";
 
 export default function Criativo() {
   return (
     <>
       <div className=" w-full sm:w-10/12 md:w-8/12">
         <p className="text-[#1c1c1e] text-lg">
-          Por fim, solicitamos as <strong>peças criativas</strong> já produzidas por vocês e em
-          linha com a atual estratégia de comunicação. Caso não possuam todos os
-          formatos colocados, podemos realizar o desdobramento por aqui,
-          respeitando KV (A ser enviado) e guide da marca (A ser enviado):
+          Por fim, solicitamos as <strong>peças criativas</strong> já produzidas
+          por vocês e em linha com a atual estratégia de comunicação. Caso não
+          possuam todos os formatos colocados, podemos realizar o desdobramento
+          por aqui, respeitando KV (A ser enviado) e guide da marca (A ser
+          enviado):
         </p>
       </div>
 
       <div className=" sm:flex pt-10">
-        <div className="sm:w-1/4">
+        <div className="sm:w-1/4 pb-8 sm:pt-0">
           <MenuNav />
         </div>
         <div className=" sm:flex-1">
@@ -54,7 +55,8 @@ export default function Criativo() {
                   </div>
                 </div>
                 <p className=" text-lg">
-                300x50, 320x480x 480x320, 728x90, 1024x768, 768x1024, 1200x627, 320x50
+                  300x50, 320x480x 480x320, 728x90, 1024x768, 768x1024,
+                  1200x627, 320x50
                 </p>
               </div>
               <div className="w-full sm:w-9/12 md:w-6/12 pb-7">
@@ -72,7 +74,8 @@ export default function Criativo() {
                   </div>
                 </div>
                 <p className=" text-lg">
-                (1200x1200, Texto 80, Título 25 e Descrição 30; 1080x1920 (9:16), podendo ser animado.)
+                  (1200x1200, Texto 80, Título 25 e Descrição 30; 1080x1920
+                  (9:16), podendo ser animado.)
                 </p>
               </div>
               <div className=" sm:px-4 pb-14">
