@@ -3,5 +3,8 @@ export default {
 
     Projeto: async () => {
         return await Service(false).get(`/api/slugify/slugs/projeto/projeto-1?populate[0]=cliente&populate[cliente][populate]=logo`)
+    },
+    Cliente: async (body: any) => {
+        return await Service(false).put(`/api/clientes/1`, body)
     }
 }
