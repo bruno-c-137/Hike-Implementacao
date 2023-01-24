@@ -7,6 +7,9 @@ import MenuNav from "../../components/menuNav";
 import Api from "../../services/api";
 import VMasker from 'vanilla-masker';
 import { useEffect, useState } from "react";
+import DialogError from "../../components/dialogError";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialForm = {
   cnpj: '',
@@ -24,6 +27,17 @@ export default function Home() {
   const [sending, setSending] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
   const [valDados, setValDados] = useState(false)
+
+  const notify = () => toast.success('Dados alterados com sucesso!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
 
   useEffect(() => {
     getProjeto()
@@ -48,7 +62,6 @@ export default function Home() {
     })
 
   }
-  console.log(valDados);
 
   function handleFormChange(name: string, value: any) {
     if (name === 'cnpj') {
@@ -72,6 +85,25 @@ export default function Home() {
     }
   }
 
+  function validateForm() {
+    setError(undefined);
+    const arrError: Array<string | undefined> = [];
+    if (form?.cnpj?.length < 14) {
+      arrError.push('CNPJ incompleto');
+    }
+    if (form?.endereco == '') {
+      arrError.push('Informe o Endereço');
+    }
+    if (form?.representante_nome == '') {
+      arrError.push('Informe o Nome do representante legal');
+    }
+    if (form?.representante_email.match(/[A-Za-z0-9.]+@[A-Za-z0-9]/) == null) {
+      arrError.push('Email do Email do representante legal inválido');
+    }
+    setError(arrError);
+    return !arrError.length;
+  };
+
 
   async function handleSubmit(e: any) {
     const formData = {
@@ -81,23 +113,25 @@ export default function Home() {
     };
 
     e.preventDefault();
-
-    setSending(true);
-    try {
-      const resp = await Api.Cliente(formData);
-      if (resp) {
-        console.log(resp?.data);
-
-        updateForm(resp?.data)
-      } else {
-        throw new Error("");
+    if (validateForm()) {
+      setSending(true);
+      try {
+        const resp = await Api.Cliente(formData);
+        if (resp) {
+          updateForm(resp?.data);
+          notify()
+        } else {
+          throw new Error("");
+        }
+      } catch (e: any) {
+        const errors = e?.response?.data?.mensagem;
+        setError([errors || 'Algo deu errado. Tente novamente.'])
+        setIsOpen(true);
+      } finally {
+        setSending(false);
       }
-    } catch (e: any) {
-      const errors = e?.response?.data?.mensagem;
-      setError([errors || 'Algo deu errado. Tente novamente.'])
+    } else {
       setIsOpen(true);
-    } finally {
-      setSending(false);
     }
 
   }
@@ -259,6 +293,19 @@ export default function Home() {
                   </button>
                 </div>
               </form>
+              <DialogError isOpen={isOpen} onClose={() => setIsOpen(false)} errors={error} />
+              <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
             </div>
             <div className="mb-10 border-b border-[#5C5D5C] pb-12">
               <p className="text-[#393939] text-xl mb-7">
