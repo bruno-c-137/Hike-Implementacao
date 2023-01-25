@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function HeaderMain() {
     return (
         <>
-            <header>
+            <header id="header">
                 <div className="container">
                     <div className="flex justify-center">
                         <div className="flex items-center py-10">

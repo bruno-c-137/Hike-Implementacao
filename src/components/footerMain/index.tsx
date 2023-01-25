@@ -3,6 +3,7 @@ import LogoHikeFooter from '../../assets/imgs/logo-hike-footer.png'
 import LinkedinLogo from '../../assets/imgs/img-linkedin.png'
 import InstagramLogo from '../../assets/imgs/img-instagram.png'
 import SetaTop from '../../assets/imgs/seta-top.png'
+import { scroll } from '../../helpers'
 export default function FooterMain() {
     return (
         <div className="footer">
@@ -31,7 +32,7 @@ export default function FooterMain() {
                                 </div>
                             </div>
                             <div>
-                                <button className="mb-3 flex items-center text-[11px] uppercase text-[#F4F4F4]">
+                                <button onClick={() => scroll('#header')} className="mb-3 flex items-center text-[11px] uppercase text-[#F4F4F4]">
                                     <p className="pr-2">TOPO</p><img src={SetaTop} /></button>
                                 {/* <a download target='_blank' rel="noopener noreferrer" href="./termos-de-uso.pdf" className="font-bold underline text-[15px] text-[#DADBE0] ">
                                 <span>  {DataLanguage[idioma].termos}</span></a> */}

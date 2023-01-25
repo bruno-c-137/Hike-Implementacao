@@ -6,7 +6,9 @@ import {
 
 interface LayoutProps {
     fullLoading: boolean;
+    showNav: any;
     setFullLoading: (value: boolean) => void;
+    setShowNav: (value: any) => void;
 }
 
 const layoutContext = createContext({} as LayoutProps);
@@ -17,9 +19,12 @@ export const useLayout = (): LayoutProps => {
 
 function useProvideLayout(): LayoutProps {
     const [fullLoading, setFullLoading] = useState(false);
+    const [showNav, setShowNav] = useState(0)
     return {
         fullLoading,
-        setFullLoading
+        showNav,
+        setFullLoading,
+        setShowNav
     }
 }
 const ProvideLayout: any = ({ children }: any) => {

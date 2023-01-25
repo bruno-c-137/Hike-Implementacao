@@ -169,7 +169,7 @@ export default function Home() {
             <img src={ImgMainImplementacao} alt="" />
           </div>
         </div>
-        <div data-aos="fade-up" className="mb-16">
+        <div data-aos="fade-up" className="mb-16" id="contrato">
           <p className="text-[#1c1c1e] text-lg">
             Para gerar o contrato que efetiva a nossa parceria, precisamos dos
             dados a seguir. Assim que eles forem enviados, o documento é
@@ -330,12 +330,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+        <div className="mb-10 border-b border-[#5C5D5C] pb-12" id="integracao">
           <div>
             <IntegracaoForm />
           </div>
         </div>
-        <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+        <div className="mb-10 border-b border-[#5C5D5C] pb-12" id="criativo">
           <div>
             <Criativo />
           </div>
