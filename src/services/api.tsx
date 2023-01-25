@@ -6,5 +6,8 @@ export default {
     },
     Cliente: async (body: any) => {
         return await Service(false).put(`/api/clientes/1`, body)
+    },
+    Integracao: async (body: any) => {
+        return await Service(false).put(`/api/projetos/1`, body)
     }
 }

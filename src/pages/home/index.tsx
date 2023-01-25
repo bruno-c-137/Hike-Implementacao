@@ -176,8 +176,8 @@ export default function Home() {
             encaminhado para a assinatura.
           </p>
         </div>
-        <div className="flex">
-          <div className="w-1/3">
+        <div className="sm:flex">
+          <div className="w-1/3 mb-10 sm:mb-0">
             <MenuNav />
           </div>
           <div className="flex-1">
@@ -285,6 +285,7 @@ export default function Home() {
                   </button>
                   <button
                     type="submit"
+                    disabled={sending}
                     className={`${valDados && 'hidden'} btn-custom w-1/6 bg-[#1462AC] text-white px-12 py-3  shadow-md flex justify-center items-center ${sending ? 'opacity-50' : ''}`}
                   >
                     <p className="text-secondary text-sm uppercase">
