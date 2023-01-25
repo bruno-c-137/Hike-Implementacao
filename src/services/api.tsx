@@ -9,5 +9,8 @@ export default {
     },
     Integracao: async (body: any) => {
         return await Service(false).put(`/api/projetos/1`, body)
+    },
+    Configuracao: async () => {
+        return await Service(false).get(`/api/configuracao?populate=*`)
     }
 }

@@ -18,6 +18,7 @@ export default function IntegracaoForm() {
   const [error, setError] = useState<Array<string | undefined>>();
   const [sending, setSending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [dataConfiguracoes, setDataConfiguracoes] = useState<any>(undefined)
 
   const notify = () => toast.success('Dados alterados com sucesso!', {
     position: "top-center",
@@ -31,7 +32,8 @@ export default function IntegracaoForm() {
   });
 
   useEffect(() => {
-    getProjeto()
+    getProjeto();
+    getConfiguracoes()
   }, []);
 
   function updateForm(cliente: any) {
@@ -68,6 +70,18 @@ export default function IntegracaoForm() {
       console.log('erro');
     } finally {
     }
+  };
+
+  async function getConfiguracoes() {
+    try {
+      const resp = await Api.Configuracao();
+      if (resp) {
+        setDataConfiguracoes(resp?.data);
+      }
+    } catch (error) {
+      console.log('erro');
+    } finally {
+    }
   }
 
   async function handleSubmit(e: any) {
@@ -98,6 +112,7 @@ export default function IntegracaoForm() {
 
 
   }
+
   return (
     <>
       <div className="sm:flex">
@@ -346,62 +361,69 @@ export default function IntegracaoForm() {
                   >
                     Caso você utilize Appsflyer:
                   </h1>
-                  <button
-                    type="button"
-
-                    className={`duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
+                  <a
+                    target="_blank"
+                    href={dataConfiguracoes?.data?.attributes?.app_appsflyer?.data?.attributes?.url}
+                    download
+                    className={`inline-block duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
                       }`}
                   >
                     <strong>BAIXAR PDF</strong>
-                  </button>
+                  </a>
                 </div>
                 <div className="px-4 pt-6">
                   <h1
-                    className={`text-base pb-2 duration-200 ease-in ${valDados ? "text-[#1c1c1e]" : "text-[#8e8e8e]"
+                    className={`text-base pb-2 duration-200 ease-in text-[#1c1c1e]
                       }`}
                   >
-                    Caso você utilize Appsflyer:
+                    Caso você utilize Branch:
                   </h1>
-                  <button
-                    type="button"
+                  <a
+                    target="_blank"
+                    href={dataConfiguracoes?.data?.attributes?.app_branch?.data?.attributes?.url}
+                    download
 
-                    className={`duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
+                    className={`inline-block duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
                       }`}
                   >
                     <strong>BAIXAR PDF</strong>
-                  </button>
+                  </a>
                 </div>
                 <div className="px-4 pt-6">
                   <h1
-                    className={`text-base pb-2 duration-200 ease-in ${valDados ? "text-[#1c1c1e]" : "text-[#8e8e8e]"
+                    className={`text-base pb-2 duration-200 ease-in text-[#1c1c1e]
                       }`}
                   >
-                    Caso você utilize Appsflyer:
+                    Caso você utilize Adjust:
                   </h1>
-                  <button
-                    type="button"
+                  <a
+                    target="_blank"
+                    href={dataConfiguracoes?.data?.attributes?.app_adjust?.data?.attributes?.url}
+                    download
 
-                    className={`duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
+                    className={`inline-block duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
                       }`}
                   >
                     <strong>BAIXAR PDF</strong>
-                  </button>
+                  </a>
                 </div>
                 <div className="px-4 pt-6">
                   <h1
-                    className={`text-base pb-2 duration-200 ease-in ${valDados ? "text-[#1c1c1e]" : "text-[#8e8e8e]"
+                    className={`text-base pb-2 duration-200 ease-in text-[#1c1c1e]
                       }`}
                   >
-                    Caso você utilize Appsflyer:
+                    Caso você utilize outra MMP:
                   </h1>
-                  <button
-                    type="button"
+                  <a
+                    target="_blank"
+                    href={dataConfiguracoes?.data?.attributes?.app_mmp?.data?.attributes?.url}
+                    download
 
-                    className={`duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
+                    className={`inline-block duration-200 ease-in border-[2px] border-[#8e8e8e] text-[12px] px-9 py-1 text-[#8e8e8e] btn-custom
                       }`}
                   >
                     <strong>BAIXAR PDF</strong>
-                  </button>
+                  </a>
                 </div>
                 {/* <div className=" px-4 pt-10 pb-14">
                   <button
