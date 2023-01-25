@@ -10,6 +10,9 @@ export default {
     Integracao: async (body: any) => {
         return await Service(false).put(`/api/projetos/1`, body)
     },
+    Upload: async (body: any) => {
+        return await Service(false).post(`/api/upload`, body)
+    },
     IntegracaoPost: async (body: any) => {
         return await Service(false).post(`/api/projetos/1`, body)
     },

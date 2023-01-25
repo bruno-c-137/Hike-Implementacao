@@ -1,30 +1,75 @@
 import MenuNav from "../../../components/menuNav";
 import { ArrowUp } from "phosphor-react";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import Api from "../../../services/api";
 
 export default function Criativo() {
+  const [error, setError] = useState<Array<string | undefined>>();
+  const [isOpen, setIsOpen] = useState(false);
+  const [dataUpload, setDataUpload] = useState<any>()
 
 
-  function bannerSubmit(files: any) {
+  useEffect(() => {
+    if (dataUpload) {
+      handlePutUpload('criativos_email');
+    }
+
+  }, [!!dataUpload])
+
+  function emailSubmit(files: any) {
     let formdata = new FormData();
     for (let i = 0; i < files.length; i++) {
       formdata.append("files", files[i])
     }
+    handleSubmit(formdata);
+  }
+  async function handleSubmit(e: any) {
+    try {
+      const resp = await Api.Upload(e);
+      if (resp) {
+        console.log(resp?.data);
 
+        setDataUpload(resp?.data)
 
-    let requestOptions: any = {
-      method: 'POST',
-      body: formdata
-    };
+      } else {
+        throw new Error("");
+      }
+    } catch (e: any) {
+      const errors = e?.response?.data?.mensagem;
+      setError([errors || 'Algo deu errado. Tente novamente.'])
+      setIsOpen(true);
+    } finally {
 
-    fetch("https://hike-parceiros-api-mxrvz373ja-uc.a.run.app/api/upload", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    }
   }
 
+
+  async function handlePutUpload(e: any) {
+    const formData = {
+      'data': {
+        [e]: [
+          ...dataUpload
+        ]
+      }
+
+    };
+    try {
+      const resp = await Api.Integracao(formData);
+      if (resp) {
+
+      } else {
+        throw new Error("");
+      }
+    } catch (e: any) {
+      const errors = e?.response?.data?.mensagem;
+      setError([errors || 'Algo deu errado. Tente novamente.'])
+      setIsOpen(true);
+    } finally {
+
+    }
+
+
+  }
   return (
     <>
       <div data-aos="fade-up" className=" w-full sm:w-10/12 md:w-8/12">
@@ -54,7 +99,7 @@ export default function Criativo() {
                     required
                     multiple
                     className={`w-full border-2 border-[#1462AC] outline-none pl-5 pr-2 py-1 text-lg text-[#393939] bg-transparent`}
-                    type="file" onChange={(e) => bannerSubmit(e.target.files)}
+                    type="file" onChange={(e) => emailSubmit(e.target.files)}
                   />
                   <div className=" border-2 border-[#1462AC] py-1 px-1 text-[]">
                     <ArrowUp size={28} weight="regular" color="#1462AC" />
