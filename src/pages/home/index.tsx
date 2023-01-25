@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import DialogError from "../../components/dialogError";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useLayout } from "../../contexts";
+import ImgBoxModelo from '../../assets/imgs/img-box-modelo.png'
 
 const initialForm = {
   cnpj: '',
@@ -21,6 +23,9 @@ const initialForm = {
 }
 
 export default function Home() {
+  const layoutContext = useLayout();
+  const { dataProjeto, dataConfiguracoes } = layoutContext
+
   const [form, setForm] = useState<any>(initialForm)
   const [nome, setNome] = useState('')
   const [error, setError] = useState<Array<string | undefined>>();
@@ -40,8 +45,8 @@ export default function Home() {
   });
 
   useEffect(() => {
-    getProjeto()
-  }, []);
+    updateForm(dataProjeto?.data?.attributes?.cliente)
+  }, [dataProjeto?.data?.attributes?.cliente]);
 
 
   function updateForm(cliente: any) {
@@ -71,18 +76,6 @@ export default function Home() {
       ...form,
       [name]: value
     })
-  }
-
-  async function getProjeto() {
-    try {
-      const resp = await Api.Projeto();
-      if (resp) {
-        updateForm(resp?.data?.data?.attributes?.cliente);
-      }
-    } catch (error) {
-      console.log('erro');
-    } finally {
-    }
   }
 
   function validateForm() {
@@ -312,25 +305,56 @@ export default function Home() {
               <p className="text-[#393939] text-xl mb-7">
                 <strong>Validar proposta comercial</strong>
               </p>
-              <button className="btn-custom text-[#3962a8] text-sm border border-[#1462AC] py-3 px-10">
+              <a download
+                target="_blank"
+                href={dataConfiguracoes?.data?.attributes?.proposta_comercial?.data?.attributes?.url}
+                className="inline-block btn-custom text-[#3962a8] text-sm border border-[#1462AC] py-3 px-10">
                 <strong>BAIXAR PROPOSTA COMERCIAL</strong>
-              </button>
+              </a>
             </div>
-            <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+            <div className="mb-10  pb-12">
               <p className="text-[#393939] text-xl mb-7">
                 <strong>Validar modelo de contrato</strong>
               </p>
-              <div>
-                <div className="shadow-inner bg-[#F3F8F7]">
-                  <p className="text-[#3962a8] text-base underline uppercase">
-                    <strong>Utilizar nosso modelo?</strong>
-                  </p>
+              <div className="sm:flex">
+                <div className="flex flex-col justify-center items-center bg-white styleBoxShadow relative py-10 sm:w-1/2 rounded-3xl mb-5 sm:mb-0 sm:mr-3">
+                  <div className="z-10">
+                    <p className="text-[#3962a8] text-base underline uppercase">
+                      <strong>Utilizar nosso modelo?</strong>
+                    </p>
+                  </div>
+                  <img className="absolute right-0 top-0 h-full rounded-r-3xl" src={ImgBoxModelo} alt="" />
+                </div>
+                <div className="flex flex-col justify-center items-center px-5 bg-white styleBoxShadow relative py-10  sm:w-1/2 rounded-3xl  sm:ml-3">
+                  <div className="z-10 mb-5">
+                    <p className="text-[#3962a8] text-base uppercase">
+                      <strong>Utilizar outro modelo?</strong>
+                    </p>
+
+                  </div>
+                  <div className="border border-[#4E73B1] p-5 mb-7 ">
+                    <p className="text-[#454545] text-sm text-center">
+                      Por favor, insira mais informações sobre como a parceria pode ser fomalizada.
+                    </p>
+                  </div>
+                  <div>
+                    <button
+
+
+                      className={`btn-custom  bg-[#1462AC] text-white px-7 py-3  shadow-md flex justify-center items-center `}
+                    >
+                      <p className="text-secondary text-[11px] uppercase">
+                        <strong>enviar contrato</strong>
+                      </p>
+                    </button>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="mb-10 border-b border-[#5C5D5C] pb-12" id="integracao">
+        <div className="mb-10  border-y pt-14 border-[#5C5D5C] pb-12" id="integracao">
           <div>
             <IntegracaoForm />
           </div>

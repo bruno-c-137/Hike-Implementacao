@@ -1,7 +1,30 @@
 import MenuNav from "../../../components/menuNav";
 import { ArrowUp } from "phosphor-react";
+import { useState } from "react";
+
+
 
 export default function Criativo() {
+
+
+  function bannerSubmit(files: any) {
+    let formdata = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formdata.append("files", files[i])
+    }
+
+
+    let requestOptions: any = {
+      method: 'POST',
+      body: formdata
+    };
+
+    fetch("https://hike-parceiros-api-mxrvz373ja-uc.a.run.app/api/upload", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
   return (
     <>
       <div data-aos="fade-up" className=" w-full sm:w-10/12 md:w-8/12">
@@ -25,16 +48,18 @@ export default function Criativo() {
                 <label className="text-[#393939] text-lg font-medium ">
                   <p className="p-1 text-[#1c1c1e]">E-mail marketing: *</p>
                 </label>
-                <div className=" flex items-center gap-3 pb-1">
+                <label className=" flex items-center gap-3 pb-1">
                   <input
+                    id="1"
                     required
+                    multiple
                     className={`w-full border-2 border-[#1462AC] outline-none pl-5 pr-2 py-1 text-lg text-[#393939] bg-transparent`}
-                    type="text"
+                    type="file" onChange={(e) => bannerSubmit(e.target.files)}
                   />
                   <div className=" border-2 border-[#1462AC] py-1 px-1 text-[]">
                     <ArrowUp size={28} weight="regular" color="#1462AC" />
                   </div>
-                </div>
+                </label>
                 <p className=" text-lg">
                   Arte (Se tiverem já o HTML, solicitamos o arquivo);{" "}
                 </p>

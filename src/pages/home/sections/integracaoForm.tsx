@@ -3,6 +3,7 @@ import { CheckCircle } from "phosphor-react";
 import { useEffect, useState } from "react";
 import Api from "../../../services/api";
 import { ToastContainer, toast } from 'react-toastify';
+import { useLayout } from "../../../contexts";
 
 const initialForm = {
   link_lp: '',
@@ -13,12 +14,16 @@ const initialForm = {
 }
 
 export default function IntegracaoForm() {
+  const layoutContext = useLayout();
+  const { dataConfiguracoes, dataProjeto } = layoutContext
+
   const [valDados, setValDados] = useState(true)
   const [form, setForm] = useState<any>(initialForm);
   const [error, setError] = useState<Array<string | undefined>>();
   const [sending, setSending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [dataConfiguracoes, setDataConfiguracoes] = useState<any>(undefined)
+
+
 
   const notify = () => toast.success('Dados alterados com sucesso!', {
     position: "top-center",
@@ -32,9 +37,9 @@ export default function IntegracaoForm() {
   });
 
   useEffect(() => {
-    getProjeto();
-    getConfiguracoes()
-  }, []);
+    updateForm(dataProjeto)
+  }, [dataProjeto]);
+
 
   function updateForm(cliente: any) {
     if (!!cliente?.data?.attributes?.link_lp) {
@@ -59,30 +64,6 @@ export default function IntegracaoForm() {
       [name]: value
     })
   };
-
-  async function getProjeto() {
-    try {
-      const resp = await Api.Projeto();
-      if (resp) {
-        updateForm(resp?.data);
-      }
-    } catch (error) {
-      console.log('erro');
-    } finally {
-    }
-  };
-
-  async function getConfiguracoes() {
-    try {
-      const resp = await Api.Configuracao();
-      if (resp) {
-        setDataConfiguracoes(resp?.data);
-      }
-    } catch (error) {
-      console.log('erro');
-    } finally {
-    }
-  }
 
   async function handleSubmit(e: any) {
     const formData = {
