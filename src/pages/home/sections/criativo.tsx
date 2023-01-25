@@ -4,7 +4,7 @@ import { ArrowUp } from "phosphor-react";
 export default function Criativo() {
   return (
     <>
-      <div className=" w-full sm:w-10/12 md:w-8/12">
+      <div data-aos="fade-up" className=" w-full sm:w-10/12 md:w-8/12">
         <p className="text-[#1c1c1e] text-lg">
           Por fim, solicitamos as <strong>peças criativas</strong> já produzidas
           por vocês e em linha com a atual estratégia de comunicação. Caso não
@@ -15,10 +15,10 @@ export default function Criativo() {
       </div>
 
       <div className=" sm:flex pt-10">
-        <div className="sm:w-1/4 pb-8 sm:pt-0">
+        <div data-aos="fade-right" className="sm:w-1/4 pb-8 sm:pt-0">
           <MenuNav />
         </div>
-        <div className=" sm:flex-1">
+        <div data-aos="fade-left" className=" sm:flex-1">
           <div>
             <form action="">
               <div className="w-full sm:w-9/12 md:w-6/12 pb-7">

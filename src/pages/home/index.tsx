@@ -142,7 +142,7 @@ export default function Home() {
       <div className="container">
         <div className="border-b border-[#5C5D5C] mb-10">
           <div className="sm:flex justify-between">
-            <div className="sm:w-1/3 pb-7 sm:pb-0">
+            <div data-aos="fade-right" className="sm:w-1/3 pb-7 sm:pb-0">
               <p className="text-[#1c1c1e] text-2xl pb-3">
                 Seja muito bem-vindo ao seu guia para fora da rota
               </p>
@@ -161,15 +161,15 @@ export default function Home() {
                 indicações abaixo. Se precisar
               </p>
             </div>
-            <div className="z-10">
+            <div data-aos="fade-left" className="z-10">
               <img src={ImgRetangulo} alt="" />
             </div>
           </div>
-          <div className="flex justify-center md:-mt-[165px] pointer-events-none">
+          <div className="flex justify-center md:-mt-[165px] pointer-events-none" data-aos="fade-up">
             <img src={ImgMainImplementacao} alt="" />
           </div>
         </div>
-        <div className="mb-16">
+        <div data-aos="fade-up" className="mb-16">
           <p className="text-[#1c1c1e] text-lg">
             Para gerar o contrato que efetiva a nossa parceria, precisamos dos
             dados a seguir. Assim que eles forem enviados, o documento é
@@ -177,10 +177,10 @@ export default function Home() {
           </p>
         </div>
         <div className="sm:flex">
-          <div className="w-1/3 mb-10 sm:mb-0">
+          <div data-aos="fade-right" className="w-1/3 mb-10 sm:mb-0">
             <MenuNav />
           </div>
-          <div className="flex-1">
+          <div data-aos="fade-up" className="flex-1">
             <p className="text-[#393939] text-2xl mb-7">
               <strong>Validar dados da Empresa {nome}</strong>
             </p>
@@ -340,7 +340,7 @@ export default function Home() {
             <Criativo />
           </div>
         </div>
-        <div className="mb-10 border-b border-[#5C5D5C] pb-12">
+        <div data-aos="fade-up" className="mb-10 border-b border-[#5C5D5C] pb-12">
           <div>
             <Agradecimento />
           </div>

@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
+    "@types/aos": "^3.0.4",
     "@types/vanilla-masker": "^1.2.1",
+    "aos": "^2.3.4",
     "axios": "^1.2.3",
     "axios-retry": "^3.4.0",
     "phosphor-react": "^1.4.1",

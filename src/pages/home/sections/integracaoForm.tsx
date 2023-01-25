@@ -101,10 +101,10 @@ export default function IntegracaoForm() {
   return (
     <>
       <div className="sm:flex">
-        <div className="sm:w-1/4 pb-8 sm:pt-0">
+        <div data-aos="fade-right" className="sm:w-1/4 pb-8 sm:pt-0">
           <MenuNav />
         </div>
-        <div className="sm:flex-1">
+        <div data-aos="fade-up" className="sm:flex-1">
           <div className=" sm:flex gap-5">
             <div
 
