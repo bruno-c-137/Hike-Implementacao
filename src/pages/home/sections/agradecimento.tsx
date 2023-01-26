@@ -3,7 +3,7 @@ import { ReactComponent as TratoFeito } from "../../../assets/imgs/tratoFeito.sv
 export default function Agradecimento() {
   return (
     <>
-      <div className=" sm:flex items-center sm:px-6 md:px-16 sm:gap-14">
+      <div className=" sm:flex items-center sm:px-6 md:px-16 sm:gap-14 ">
         <div className=" flex justify-center sm:block">
           <TratoFeito />
         </div>

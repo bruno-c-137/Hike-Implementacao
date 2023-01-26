@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Api from "../../../services/api";
 import { ToastContainer, toast } from 'react-toastify';
 import { useLayout } from "../../../contexts";
+import ImgLinhaCriativo from '../../../assets/imgs/img-linha-criativos.png'
 
 const initialForm = {
   link_lp: '',
@@ -294,7 +295,7 @@ export default function IntegracaoForm() {
             </div>
 
             <div
-              className={`pt-10 sm:pt-0
+              className={`pt-10 sm:pt-0 relative
                 }`}
             >
               <div
@@ -319,7 +320,7 @@ export default function IntegracaoForm() {
               </div>
 
               <div
-                className={`mt-5 rounded-3xl duration-200 ease-in bg-white styleBoxShadow pb-10
+                className={`mt-5 rounded-3xl duration-200 ease-in bg-white styleBoxShadow pb-10 relative z-10
                   }`}
               >
                 <h1
@@ -419,8 +420,12 @@ export default function IntegracaoForm() {
                   </button>
                 </div> */}
               </div>
+              <div>
+                <img className="hidden md:block absolute  right-0 pointer-events-none" src={ImgLinhaCriativo} alt="" />
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </>

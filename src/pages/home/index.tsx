@@ -363,12 +363,12 @@ export default function Home() {
             <IntegracaoForm />
           </div>
         </div>
-        <div className="mb-10 border-b border-[#5C5D5C] pb-12" id="criativo">
+        <div className=" pb-12" id="criativo">
           <div>
             <Criativo />
           </div>
         </div>
-        <div data-aos="fade-up" className="mb-10 border-b border-[#5C5D5C] pb-12">
+        <div data-aos="fade-up" className="mb-10 border-y border-[#5C5D5C] py-12 z-10 relative bg-[#F3F8F7]">
           <div>
             <Agradecimento />
           </div>
