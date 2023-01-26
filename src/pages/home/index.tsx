@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLayout } from "../../contexts";
 import ImgBoxModelo from '../../assets/imgs/img-box-modelo.png'
+import ImgLinhaContrato from '../../assets/imgs/img-linha-contrato.png'
 
 const initialForm = {
   cnpj: '',
@@ -170,8 +171,11 @@ export default function Home() {
           </p>
         </div>
         <div className="sm:flex">
-          <div data-aos="fade-right" className="w-1/3 mb-10 sm:mb-0">
-            <MenuNav />
+          <div data-aos="fade-right" className="w-1/3 mb-10 sm:mb-0 relative">
+            <img className="hidden sm:block absolute right-0 mt-3 pointer-events-none" src={ImgLinhaContrato} alt="" />
+            <div className="z-10 relative">
+              <MenuNav />
+            </div>
           </div>
           <div data-aos="fade-up" className="flex-1">
             <p className="text-[#393939] text-2xl mb-7">
