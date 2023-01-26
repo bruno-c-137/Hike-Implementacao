@@ -134,8 +134,8 @@ export default function Home() {
     <div className="home">
       <div className="container">
         <div className="border-b border-[#5C5D5C] mb-10">
-          <div className="sm:flex justify-between">
-            <div data-aos="fade-right" className="sm:w-1/3 pb-7 sm:pb-0">
+          <div className="md:flex justify-between">
+            <div data-aos="fade-right" className="md:w-1/3 pb-7 md:pb-0">
               <p className="text-[#1c1c1e] text-2xl pb-3">
                 Seja muito bem-vindo ao seu guia para fora da rota
               </p>
@@ -154,7 +154,7 @@ export default function Home() {
                 indicações abaixo. Se precisar
               </p>
             </div>
-            <div data-aos="fade-left" className="z-10">
+            <div data-aos="fade-left" className="z-10 sm:flex md:block justify-center">
               <img src={ImgRetangulo} alt="" />
             </div>
           </div>
