@@ -6,30 +6,31 @@ import Api from "../../../services/api";
 export default function Criativo() {
   const [error, setError] = useState<Array<string | undefined>>();
   const [isOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState<any>()
   const [dataUpload, setDataUpload] = useState<any>()
 
 
   useEffect(() => {
-    if (dataUpload) {
-      handlePutUpload('criativos_email');
+    if (form) {
+      handlePutUpload(form);
     }
 
-  }, [!!dataUpload])
+  }, [!!dataUpload && form])
 
-  function emailSubmit(files: any) {
+
+  function uploadSubmit(name: any, files: any) {
     let formdata = new FormData();
     for (let i = 0; i < files.length; i++) {
       formdata.append("files", files[i])
     }
     handleSubmit(formdata);
+    setForm(name)
   }
   async function handleSubmit(e: any) {
     try {
       const resp = await Api.Upload(e);
       if (resp) {
-        console.log(resp?.data);
-
-        setDataUpload(resp?.data)
+        setDataUpload(resp?.data);
 
       } else {
         throw new Error("");
@@ -99,7 +100,7 @@ export default function Criativo() {
                     required
                     multiple
                     className={`w-full border-2 border-[#1462AC] outline-none pl-5 pr-2 py-1 text-lg text-[#393939] bg-transparent`}
-                    type="file" onChange={(e) => emailSubmit(e.target.files)}
+                    type="file" onChange={(e) => uploadSubmit('criativos_email', e.target.files)}
                   />
                   <div className=" border-2 border-[#1462AC] py-1 px-1 text-[]">
                     <ArrowUp size={28} weight="regular" color="#1462AC" />
@@ -114,16 +115,16 @@ export default function Criativo() {
                 <label className="text-[#393939] text-lg font-medium ">
                   <p className="p-1 text-[#1c1c1e]">Banners (Formatos): * </p>
                 </label>
-                <div className=" flex items-center gap-3 pb-1">
+                <label className=" flex items-center gap-3 pb-1">
                   <input
-                    required
+                    multiple
                     className={`w-full border-2 border-[#1462AC] outline-none pl-5 pr-2 py-1 text-lg text-[#393939] bg-transparent`}
-                    type="text"
+                    type="file" onChange={(e) => uploadSubmit('banners', e.target.files)}
                   />
                   <div className=" border-2 border-[#1462AC] py-1 px-1 text-[]">
                     <ArrowUp size={28} weight="regular" color="#1462AC" />
                   </div>
-                </div>
+                </label>
                 <p className=" text-lg">
                   300x50, 320x480x 480x320, 728x90, 1024x768, 768x1024,
                   1200x627, 320x50
@@ -133,29 +134,29 @@ export default function Criativo() {
                 <label className="text-[#393939] text-lg font-medium ">
                   <p className="p-1 text-[#1c1c1e]">Vídeo:</p>
                 </label>
-                <div className=" flex items-center gap-3 pb-1">
+                <label className=" flex items-center gap-3 pb-1">
                   <input
-                    required
+                    multiple
                     className={`w-full border-2 border-[#1462AC] outline-none pl-5 pr-2 py-1 text-lg text-[#393939] bg-transparent`}
-                    type="text"
+                    type="file" onChange={(e) => uploadSubmit('videos', e.target.files)}
                   />
                   <div className=" border-2 border-[#1462AC] py-1 px-1 text-[]">
                     <ArrowUp size={28} weight="regular" color="#1462AC" />
                   </div>
-                </div>
+                </label>
                 <p className=" text-lg">
                   (1200x1200, Texto 80, Título 25 e Descrição 30; 1080x1920
                   (9:16), podendo ser animado.)
                 </p>
               </div>
-              <div className=" sm:px-4 pb-14">
+              {/* <div className=" sm:px-4 pb-14">
                 <button
                   type="submit"
                   className="duration-200 ease-in text-xs px-10 py-2 bg-[#3962a8] text-white btn-custom"
                 >
                   Enviar
                 </button>
-              </div>
+              </div> */}
             </form>
           </div>
         </div>
